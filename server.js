@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const userRoutes = require("./routes/user.routes");
+const ticketRoutes = require("./routes/ticket.routes");
 
 dotenv.config();
 const app = express();
@@ -20,6 +21,7 @@ mongoose
 
 // Utilisation des routes
 app.use("/api", userRoutes);
+app.use("/api/tickets", ticketRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Serveur démarré sur le port ${PORT}`));
