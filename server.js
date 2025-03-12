@@ -20,21 +20,21 @@ app.set("views", path.join(__dirname, "views"));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
+app.use(express.static("public"));
+
 
 // Connexion à MongoDB
 mongoose
   .connect(process.env.MONGO_URI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
   })
   .then(() => console.log("MongoDB connecté"))
   .catch((err) => console.log(err));
 
 // Utilisation des routes
-app.use("/api", userRoutes);
-app.use("/api/tickets", ticketRoutes);
+app.use(userRoutes);
+app.use(ticketRoutes);
 app.use(authRoutes);
 app.use(roleRoutes);
 
 const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Serveur démarré sur le port ${PORT}`));
+app.listen(PORT, () => console.log(`Server launched on port: ${PORT}`));

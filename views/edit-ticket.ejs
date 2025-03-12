@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Ticket</title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Edit Ticket</h1>
+        <a href="/tickets">Back to Dashboard</a>
+    </header>
+
+    <main>
+        <section>
+            <form action="/tickets/edit/<%= ticket._id %>" method="POST">
+                <div>
+                    <label for="title">Ticket Title</label>
+                    <input type="text" id="title" name="title" value="<%= ticket.title %>" required>
+                </div>
+                <div>
+                    <label for="description">Ticket Description</label>
+                    <textarea id="description" name="description" required><%= ticket.description %></textarea>
+                </div>
+                <div>
+                    <label for="priority">Priority</label>
+                    <select id="priority" name="priority">
+                        <option value="low" <% if(ticket.priority === 'low') { %> selected <% } %>>Low</option>
+                        <option value="medium" <% if(ticket.priority === 'medium') { %> selected <% } %>>Medium</option>
+                        <option value="high" <% if(ticket.priority === 'high') { %> selected <% } %>>High</option>
+                        <option value="critical" <% if(ticket.priority === 'critical') { %> selected <% } %>>Critical</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="status">Status</label>
+                    <select id="status" name="status">
+                        <option value="open" <% if(ticket.status === 'open') { %> selected <% } %>>Open</option>
+                        <option value="in-progress" <% if(ticket.status === 'in-progress') { %> selected <% } %>>In Progress</option>
+                        <option value="resolved" <% if(ticket.status === 'resolved') { %> selected <% } %>>Resolved</option>
+                        <option value="closed" <% if(ticket.status === 'closed') { %> selected <% } %>>Closed</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit">Update Ticket</button>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Support Dashboard</p>
+    </footer>
+
+    <script src="/scripts.js"></script>
+</body>
+</html>

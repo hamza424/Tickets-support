@@ -1,3 +1,223 @@
-<h2>User Dashboard</h2>
-<p>Create and track your tickets.</p>
-<a href="/logout">Logout</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard - Support Tickets</title>
+    <link rel="stylesheet" href="">
+    <style>
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f9;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background-color: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 22px;
+        }
+
+        header a {
+            text-decoration: none;
+            color: white;
+            background-color: #e74c3c;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: background 0.3s;
+        }
+
+        header a:hover {
+            background-color: #c0392b;
+        }
+
+        /* Main Content */
+        main {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Section */
+        h2 {
+            font-size: 24px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        /* Create Ticket Button */
+        .btn-create-ticket {
+            display: inline-block;
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            transition: background 0.3s;
+        }
+
+        .btn-create-ticket:hover {
+            background-color: #2980b9;
+        }
+
+        /* Ticket Cards */
+        .ticket-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .ticket-card {
+            background: white;
+            border-radius: 12px; /* Rounded corners */
+            padding: 20px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            text-align: center;
+        }
+
+        .ticket-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        .ticket-description {
+            font-size: 14px;
+            color: #555;
+            margin-top: 5px;
+            margin-bottom: 10px;
+        }
+
+        .ticket-info {
+            font-size: 12px;
+            color: #777;
+        }
+
+        .ticket-actions {
+            margin-top: 10px;
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Buttons */
+        .btn-edit, .btn-delete {
+            display: inline-block;
+            padding: 8px 12px;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 14px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-edit {
+            background-color: #27ae60;
+            color: white;
+        }
+
+        .btn-edit:hover {
+            background-color: #219150;
+        }
+
+        .btn-delete {
+            background-color: #e74c3c;
+            color: white;
+        }
+
+        .btn-delete:hover {
+            background-color: #c0392b;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #2c3e50;
+            color: white;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        /* Responsive */
+        @media (max-width: 600px) {
+            .ticket-container {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .ticket-card {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome <%= user.name %> to Your Support Dashboard</h1>
+        <a href="/logout">Logout</a>
+    </header>
+
+    <main>
+        <section>
+            <h2>Your Support Tickets</h2>
+            
+            <!-- Button to create a new ticket -->
+            <a href="/tickets/create" class="btn-create-ticket">Create New Ticket</a>
+
+            <!-- Displaying all the tickets as cards -->
+            <% if (tickets.length > 0) { %>
+                <div class="ticket-container">
+                    <% tickets.forEach(ticket => { %>
+                        <div class="ticket-card">
+                            <div class="ticket-title"><%= ticket.title %></div>
+                            <div class="ticket-description"><%= ticket.description %></div>
+                            <div class="ticket-info">Priority: <strong><%= ticket.priority %></strong></div>
+                            <div class="ticket-info">Status: <strong><%= ticket.status %></strong></div>
+                            <div class="ticket-actions">
+                                <a href="/tickets/edit/<%= ticket._id %>" class="btn-edit">Edit</a>
+                                <form action="/tickets/delete/<%= ticket._id %>" method="POST" style="display:inline;">
+                                    <button type="submit" class="btn-delete">Delete</button>
+                                </form>
+                            </div>
+                        </div>
+                    <% }); %>
+                </div>
+            <% } else { %>
+                <p>No tickets found. Please create a new one!</p>
+            <% } %>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Support Dashboard</p>
+    </footer>
+
+    <script src="/scripts.js"></script>
+</body>
+</html>
