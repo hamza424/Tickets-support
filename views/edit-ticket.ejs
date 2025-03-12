@@ -32,15 +32,6 @@
                         <option value="critical" <% if(ticket.priority === 'critical') { %> selected <% } %>>Critical</option>
                     </select>
                 </div>
-                <div>
-                    <label for="status">Status</label>
-                    <select id="status" name="status">
-                        <option value="open" <% if(ticket.status === 'open') { %> selected <% } %>>Open</option>
-                        <option value="in-progress" <% if(ticket.status === 'in-progress') { %> selected <% } %>>In Progress</option>
-                        <option value="resolved" <% if(ticket.status === 'resolved') { %> selected <% } %>>Resolved</option>
-                        <option value="closed" <% if(ticket.status === 'closed') { %> selected <% } %>>Closed</option>
-                    </select>
-                </div>
                 <button type="submit" class="btn-submit">Update Ticket</button>
             </form>
         </section>

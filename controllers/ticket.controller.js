@@ -67,7 +67,7 @@ exports.getEditTicket = async (req, res) => {
 
 // Edit ticket details
 exports.editTicket = async (req, res) => {
-  const { title, description, priority, status } = req.body;
+  const { title, description, priority } = req.body;
   try {
     const ticket = await Ticket.findById(req.params.id);
     if (!ticket || ticket.user.toString() !== req.user.id.toString()) {
@@ -77,7 +77,6 @@ exports.editTicket = async (req, res) => {
     ticket.title = title;
     ticket.description = description;
     ticket.priority = priority;
-    ticket.status = status;
     ticket.updated_at = Date.now();
     await ticket.save();
     res.redirect("/tickets");
