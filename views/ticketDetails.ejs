@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Details</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7f9;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1, h2 {
+            text-align: center;
+            color: #2c3e50;
+        }
+        .ticket-details {
+            background: #ecf0f1;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .ticket-details p {
+            font-size: 16px;
+            margin: 10px 0;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        label {
+            font-weight: bold;
+        }
+        select, button {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #bdc3c7;
+            border-radius: 5px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ticket Details</h1>
+        <div class="ticket-details">
+            <p><strong>Title:</strong> <%= ticket.title %></p>
+            <p><strong>Description:</strong> <%= ticket.description %></p>
+            <p><strong>Status:</strong> <%= ticket.status %></p>
+        </div>
+        
+        <h2>Change Status</h2>
+        <form action="/support_agent/tickets/<%= ticket.id %>/status" method="POST">
+            <label for="status">New Status:</label>
+            <select name="status" id="status">
+                <option value="open" <%= ticket.status === 'open' ? 'selected' : '' %>>Open</option>
+                <option value="in-progress" <%= ticket.status === 'in-progress' ? 'selected' : '' %>>In Progress</option>
+                <option value="resolved" <%= ticket.status === 'resolved' ? 'selected' : '' %>>Resolved</option>
+                <option value="closed" <%= ticket.status === 'closed' ? 'selected' : '' %>>Closed</option>
+            </select>
+            <button type="submit">Update Status</button>
+        </form>
+    </div>
+</body>
+</html>

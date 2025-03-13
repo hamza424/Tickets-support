@@ -21,7 +21,7 @@ exports.createTicket = async (req, res) => {
       title,
       description,
       priority,
-      user: req.user.id, // ✅ Fix: Use `id` instead of `_id`
+      user: req.user.id, 
     });
 
     await ticket.save();
