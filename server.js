@@ -7,6 +7,8 @@ const ticketRoutes = require("./routes/ticket.routes");
 const cookieParser = require("cookie-parser");
 const authRoutes = require("./routes/auth.routes");
 const roleRoutes = require("./routes/role.routes");
+const support_agentRoutes = require("./routes/support_agent.routes");
+const adminRoutes = require("./routes/admin.routes")
 const path = require("path");
 
 dotenv.config();
@@ -31,10 +33,16 @@ mongoose
   .catch((err) => console.log(err));
 
 // Utilisation des routes
+app.get("/", (req, res) => {
+  res.redirect("/login");
+});
+
 app.use(userRoutes);
 app.use(ticketRoutes);
 app.use(authRoutes);
 app.use(roleRoutes);
+app.use(support_agentRoutes);
+app.use(adminRoutes);
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server launched on port: ${PORT}`));

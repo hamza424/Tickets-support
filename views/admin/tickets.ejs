@@ -1,0 +1,17 @@
+<h2>All Tickets</h2>
+<table>
+    <tr>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Owner</th>
+        <th>Status</th>
+    </tr>
+    <% tickets.forEach(ticket => { %>
+        <tr>
+            <td><%= ticket.title %></td>
+            <td><%= ticket.description %></td>
+            <td><%= ticket.owner.name %> (<%= ticket.owner.email %>)</td>
+            <td><%= ticket.status %></td>
+        </tr>
+    <% }); %>
+</table>

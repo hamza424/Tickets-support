@@ -12,8 +12,10 @@ router.get(
   "/support_agent",
   authenticateJWT,
   authorizeRole("support_agent"),
-  (req, res) => res.render("support")
+  (req, res) => res.redirect("/support_agent/tickets")
 );
+
+
 
 router.get(
   "/support_agent/tickets/:id",

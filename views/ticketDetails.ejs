@@ -7,29 +7,34 @@
     <link rel="stylesheet" href="styles.css">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f4f7f9;
             color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
         .container {
             max-width: 600px;
-            margin: 50px auto;
             background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            text-align: center;
         }
         h1, h2 {
-            text-align: center;
             color: #2c3e50;
+            margin-bottom: 15px;
         }
         .ticket-details {
             background: #ecf0f1;
             padding: 15px;
             border-radius: 8px;
             margin-bottom: 20px;
+            text-align: left;
         }
         .ticket-details p {
             font-size: 16px;
@@ -38,13 +43,14 @@
         form {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
+            text-align: left;
         }
         label {
             font-weight: bold;
         }
         select, button {
-            padding: 10px;
+            padding: 12px;
             font-size: 16px;
             border: 1px solid #bdc3c7;
             border-radius: 5px;
@@ -53,11 +59,29 @@
             background-color: #3498db;
             color: white;
             cursor: pointer;
-            transition: background 0.3s;
+            transition: background 0.3s ease-in-out;
+            border: none;
         }
         button:hover {
             background-color: #2980b9;
         }
+
+        /* Back to Tickets Button */
+        .back-button {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 12px 20px;
+            font-size: 16px;
+            background-color: #e74c3c;
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background 0.3s ease-in-out;
+        }
+        .back-button:hover {
+            background-color: #c0392b;
+        }
+
     </style>
 </head>
 <body>
@@ -80,6 +104,8 @@
             </select>
             <button type="submit">Update Status</button>
         </form>
+
+        <a href="/support_agent/tickets" class="back-button">← Back to Tickets</a>
     </div>
 </body>
 </html>

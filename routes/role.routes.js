@@ -31,6 +31,8 @@ router.get("/user", authenticateJWT, authorizeRole("user"), (req, res) => {
 });
 
 
+
+
 router.get("/unauthorized", (req, res) => res.render("unauthorized"));
 
 module.exports = router;

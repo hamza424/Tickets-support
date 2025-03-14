@@ -33,10 +33,18 @@ exports.logoutUser = (req, res) => {
 };
 
 // Register (for testing)
-exports.registerUser = async (req, res) => {
-  const { email, password, role } = req.body;
-  const hashedPassword = await bcrypt.hash(password, 10);
-  await User.create({ email, password: hashedPassword, role });
+exports.registerUserr = async (req, res) => {
+  try {
+    const { name, email, password, role } = req.body;
+    const hashedPassword = await bcrypt.hash(password, 10);
+    await User.create({ name, email, password: hashedPassword, role });
 
-  res.redirect("/login");
+    console.log("User registered successfully, redirecting...");
+    res.redirect("/login");
+  } catch (error) {
+    console.error("Error during registration:", error);
+    res.status(500).json({ message: "Server error", error });
+  }
 };
+
+
